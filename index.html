@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample AJAX Test</title>
+    <style>
+        body{
+            background-image: url('https://wallpaperaccess.com/full/476729.jpg');
+            height:100vh;
+            width:100%;
+            background-size: 100%;
+            font-family: arial;
+        }
+        #one,#two{
+            display:flex;
+            justify-content: center;
+        }
+        #three{
+            background-color: transparent;
+            width:600px;
+            height:800px;
+            margin-top:30px;
+            padding:30px;
+            color:white;
+            text-shadow: 5px 5px 15px black;
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 38px;
+        }
+        h2{
+            font-size: 32px;
+            color: #000;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        #click{
+            color:white;
+            background-color:black;
+            padding:15px 20px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 800;
+            font-size: 18px;
+            cursor: pointer;
+            transition:0.15s;
+            margin-right: 20px;
+        }
+        #click:hover{
+            color:black;
+            background-color: white;
+            box-shadow: 5px 5px 15px black;
+            transition:0.15s;
+        }
+    </style>
+</head>
+<body>
+    <h2>click the button to get the dragon riding instructions in High valerion</h2>
+    <div id="one">    
+        <button id="click" onclick="ajaxFunction()">
+        Click me!
+    </button>
+    </div>
+    <div id="two">
+        <div id="three"></div>
+    </div>
+    <script>
+            let a=new XMLHttpRequest();
+        function ajaxFunction(){
+            a.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById('three').innerHTML=(this.responseText);
+                }
+            };
+            a.open('POST','instructions.txt',true);
+            a.send();
+        }
+    </script>
+</body>
+</html>
